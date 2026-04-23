@@ -35,7 +35,7 @@ gc1 <- gc_binary(formula=.f, model="ridge", data=dataPROPHYVAP, group="GROUP",
                  param.tune=NULL, boot.type="bcv", cv=10, boot.number=10, 
                  effect="ATE", progress=TRUE, boot.tune=TRUE)
                      
-#Plot the calibration curve
+### Plot the calibration curve
 plot(gc1, n.groups=3, col="red3")
 }
 

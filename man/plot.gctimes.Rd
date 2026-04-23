@@ -49,13 +49,13 @@ gc1 <- gc_times(formula=.f, model="lasso", data=dataPROPHYVAP, group="GROUP",
                 cv=10, boot.type="boot", boot.number=10, boot.tune=TRUE,
                 effect="ATE", progress=TRUE, pro.time=20, seed=5192)
 
-#Calibration plot at 20 days
+### Calibration plot at 20 days
 plot(gc1, method="calibration", n.groups=5, pro.time=10)
 
-#Kaplan-Meier vs mean predicted survival
+### Kaplan-Meier vs mean predicted survival
 plot(gc1, method="calibration2")
 
-#Predicted survival curves for treatment groups
+### Predicted survival curves for treatment groups
 plot(gc1, method="survival", col=c("red3","blue3"))
 legend("bottomleft", c("Placebo", "Ceftriaxone"), col=c("red3","blue3"), lty=1)
 }

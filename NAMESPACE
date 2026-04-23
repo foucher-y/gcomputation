@@ -13,7 +13,7 @@ importFrom("graphics", "axis")
 importFrom("stats", "as.formula", "formula", "glm", "loess", "median",
              "model.matrix", "na.omit", "pnorm", "predict",
              "printCoefmat", "qnorm", "quantile", "sd", "terms",
-			 "coef","plogis","vcov", "update")
+			       "coef","plogis","vcov", "update")
 
 export(gc_binary)
 export(gc_continuous)

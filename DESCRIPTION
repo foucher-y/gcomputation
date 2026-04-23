@@ -12,3 +12,4 @@ NeedsCompilation: no
 Maintainer: Yohann Foucher <yohann.foucher@univ-poitiers.fr>
 BugReports: https://github.com/chupverse/gcomputation/issues
 Authors@R: c(person("Yohann", "Foucher", role = c("aut", "cre"), email = "yohann.foucher@univ-poitiers.fr", comment = c(ORCID = "0000-0003-0330-7457")), person("Joe", "De Keizer", role = "aut", email = "joe.de.keizer@univ-poitiers.fr", comment = c(ORCID = "0000-0003-0821-4540")) )
+RoxygenNote: 7.3.3

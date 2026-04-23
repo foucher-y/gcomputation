@@ -35,7 +35,7 @@ gc1 <- gc_count(formula=.f, model="all", data=dataPROPHYVAP, group="GROUP",
                 cv=10, boot.type="boot", boot.number=10, boot.tune=TRUE, 
                 effect="ATE", progress=TRUE, seed=5192)
                      
-#Plot the calibration curve
+### Plot the calibration curve
 plot(gc1, n.groups=5, col="red3")
 }
 

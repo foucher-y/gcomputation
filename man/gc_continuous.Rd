@@ -16,8 +16,8 @@ gc_continuous(formula, data, group, effect="ATE", model,
   \item{formula}{A regression formula related to the Q-model with the variable \code{group} among the predictors.}
   \item{data}{A data frame in which to look for the variables related to the outcome, the studied (\code{group}) and the predictors included in the previous model.}
   \item{group}{The name of the variable related to the exposure/treatment. This variable shall have only two modalities encoded 0 for the untreated/unexposed subjects and 1 for the treated/exposed ones.}
-   \item{effect}{The type of the marginal effect to be estimated. Three types are possible : "ATE" (by default), "ATT" and "ATU". See details.}   
-   \item{model}{The modelling method used to create the Q-model. Current implemented methods are : "all", "lasso", "ridge", "elasticnet", "aic" and "bic". See details.} 
+   \item{effect}{The type of the marginal effect to be estimated. Three types are possible: "ATE" (by default), "ATT" and "ATU". See details.}   
+   \item{model}{The modelling method used to create the Q-model. Current implemented methods are: "all", "lasso", "ridge", "elasticnet", "aic" and "bic". See details.} 
    \item{param.tune}{An optional argument to specify the tuning parameter(s) for the previous  modelling method. If \code{NULL} (the default), the tuning parameter(s) is(are) estimated by \code{cv}-fold cross-validation. Otherwise, the user can propose a tuning grid. See details.}
     \item{cv}{The number of splits for cross-validation. The default value is 30.}
     \item{boot.type}{The type of bootstrap to use. Two types are possible: "bcv" for bootstrap cross-validation (by default) and "boot" usual bootstrap. See details.}
@@ -43,13 +43,13 @@ Several modelling methods can be used for the Q-model estimation:
 \code{"bic"} \tab A linear regression with a BIC-based forward selection.
 }
 
-The \code{param.tune} argument allows users to specify tuning parameters penalized regression. If \code{NULL} (the default), the tuning parameters of each algorithm are estimated by cv-fold cross-validation and the default grids on the \code{glmnet} package. Otherwise, the user can propose a tuning grid for each modelling method. For "lasso" and "ridge" penalizations, it should be a vector representing the lambda penalization parameter. For "elasticnet", it should be a list or a vector of length 2, containing lambda (penalization parameter) and alpha (mixing parameter between L1 and L2 regularizations) values. The alpha value typically ranges from 0 to 1. Each object in the list declared in param.tune must have the same name as the corresponding parameter of the method. The user may propose a single value of each tuning parameter if she/he aims to define her/his own penality.
+The \code{param.tune} argument allows users to specify tuning parameters of penalized regression. If \code{NULL} (the default), the tuning parameters of each algorithm are estimated by cv-fold cross-validation  and the default grid of the \code{glmnet} package is used. Otherwise, the user can propose a specific grid. For "lasso" and "ridge" penalizations, it should be a vector representing the lambda penalization parameter. For "elasticnet", it should be a list or a vector of length 2, containing lambda (penalization parameter) and alpha (mixing parameter between L1 and L2 regularizations) values. The alpha value typically ranges from 0 to 1. The user may propose a single value of each tuning parameter if she/he aims to define her/his own penalty.
 
 The \code{boot.tune} argument is logical value which determines whether the tuning parameter should be estimated inside of each bootstrap iteration. If \code{FALSE} (the default), the tuning parameter will be estimated once on the complete dataset.
 
-The \code{boot.type} argument controls how bootstrap estimates are computed. With \code{boot.type = "boot"}, each iteration fits the Q-model on a sampled dataset and predicts on the same patients. With \code{boot.type = "bcv"}, the Q-model is fitted on the sampled patients but predictions are made on patients not included in that sample.
+The \code{boot.type} argument controls how bootstrap estimates are computed. With \code{boot.type = "boot"}, each iteration fits the Q-model on a sampled dataset and predicts on the same patients. With \code{boot.type = "bcv"}, the Q-model is fitted on the sampled patients, and predictions are made on patients not included in that sample.
 
-If \code{boot.mi = TRUE}, multiple imputation is considered by using the MI-BOOT approach proposed by Schomaker & Heumann (2018). The input \code{data} is first imputed with the \code{\link[mice]{mice}} function to create \code{m} complete datasets. GC is then performed on each imputed dataset with the specified Q-model, and bootstrap estimates from all runs are concatenated. Note that all columns in the provided dataset are used as predictors during the imputation process.
+If \code{boot.mi = TRUE}, multiple imputation is considered by using the MI-BOOT approach proposed by Schomaker & Heumann (2018). The dataset is first imputed using the \code{\link[mice]{mice}} function to create \code{m} complete datasets. The bootstrap samples are then generated from each imputed dataset. The Q-model and the G-computation is performed for each \code{m} x \code{boot.number} samples, and all runs are finally concatenated.
 }
 
 \value{
@@ -64,7 +64,7 @@ If \code{boot.mi = TRUE}, multiple imputation is considered by using the MI-BOOT
 \item{missing}{The number of observations that were removed from the original dataset due to missing values.}
 \item{boot.number}{The total number of bootstrap resamples.}
 \item{boot.type}{The type of bootstrap.}
-\item{group}{A character string specifying the name of the variable related to the exposure/treatment.}
+\item{group}{A character string specifying the name of the variable related to the exposure or treatment.}
 \item{n}{The sample size of the dataset after missing data removal (if \code{boot.mi = FALSE}).}
 \item{adjusted.results}{A data frame containing the adjusted results for each bootstrap sample: \code{m1} (mean experimental), \code{m0} (mean control), \code{delta} (difference), and \code{ratio} (mean ratio).}
 \item{unadjusted.results}{A data frame containing the unadjusted results for each bootstrap sample: \code{m1} (mean experimental), \code{m0} (mean control), \code{delta} (difference), and \code{ratio} (mean ratio).}

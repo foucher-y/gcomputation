@@ -11,7 +11,7 @@ This dataset \code{dataCOHORT} is a simulated observational cohort designed to r
 \format{
 A data frame with 2000 observations for the following variables:
 \describe{
-\item{\code{GROUP}}{This character vector represents the observed treatment group (1 for Ceftriaxone and 0 otherwise)}
+\item{\code{GROUP}}{This character vector represents the treatment group (1 for Ceftriaxone and 0 otherwise)}
 \item{\code{AGE}}{This numeric vector represents the patient age in years}
 \item{\code{SEX}}{This character vector represents the gender (F=female/M=male)}
 \item{\code{BMI}}{This numeric vector represents the body mass index in kg/m2}
@@ -24,8 +24,8 @@ A data frame with 2000 observations for the following variables:
 \item{\code{LEUKO}}{This character vector represents leukocytosis at admission per mm3 in 2 classes}
 \item{\code{TIME_INTUBATION}}{This numeric vector represents the time to intubation in hours}
 \item{\code{VAP}}{This character vector represents ventilatory associated pneumonia (1 for event and 0 otherwise)} 
-\item{\code{TIME_DEATH}}{This numeric vector represents the time to death in days (maximum follow-up at 60 days)}
-\item{\code{DEATH}}{This character vector represents death status at the end of the follow-up (1 for event and 0 otherwise)} 
+\item{\code{TIME_DEATH}}{This numeric vector represents the time to death in days (follow-up of 60 days)}
+\item{\code{DEATH}}{This character vector represents status at follow-up end (1 for event and 0 otherwise)} 
 }
 }
 

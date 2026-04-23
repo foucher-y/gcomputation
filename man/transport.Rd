@@ -3,7 +3,7 @@
 \title{Transport the Marginal Effect for Another Populations}
 
 \description{
-  Applies an already fitted Q-model to estimate marginal effects for a new population (i.e., with differentially distibuted baseline characteristics used as predictors in the Q-Model).
+  Applies an already fitted Q-model to estimate marginal effects for a new population (i.e., with differentially distributed baseline characteristics used as predictors in the Q-Model).
 }
 
 \usage{
